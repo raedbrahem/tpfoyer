@@ -1,6 +1,7 @@
 package tn.esprit.foyer.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.foyer.entities.Foyer;
 import tn.esprit.foyer.repository.FoyerRepository;
@@ -10,7 +11,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class FoyerServiceImpl implements IFoyerService {
-
+    @Autowired
     private  FoyerRepository foyerRepository;
 
     @Override

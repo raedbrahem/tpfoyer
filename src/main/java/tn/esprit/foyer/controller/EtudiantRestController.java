@@ -1,6 +1,7 @@
 package tn.esprit.foyer.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.foyer.entities.Etudiant;
 import tn.esprit.foyer.service.IEtudiantService;
@@ -11,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/etudiant")
 public class EtudiantRestController {
+    @Autowired
     private  IEtudiantService etudiantService;
 
     @GetMapping("/retrieve-all-etudiants")

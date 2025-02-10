@@ -1,6 +1,7 @@
 package tn.esprit.foyer.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.foyer.entities.Etudiant;
 import tn.esprit.foyer.repository.EtudiantRepository;
@@ -10,7 +11,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class EtudiantServiceImpl implements IEtudiantService {
-
+    @Autowired
     private  EtudiantRepository etudiantRepository;
 
     @Override

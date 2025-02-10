@@ -1,6 +1,7 @@
 package tn.esprit.foyer.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.foyer.entities.Reservation;
 import tn.esprit.foyer.service.IReservationService;
@@ -11,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/reservation")
 public class ReservationRestController {
+    @Autowired
     private  IReservationService reservationService;
 
     @GetMapping("/retrieve-all-reservations")
