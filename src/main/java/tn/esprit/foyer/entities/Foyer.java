@@ -59,6 +59,7 @@ public class Foyer {
 
     @OneToOne
     private Universite universite;
+
     @OneToMany(mappedBy = "foyer")
     private List<Bloc> blocs;
 }

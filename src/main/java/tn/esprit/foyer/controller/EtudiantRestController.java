@@ -1,4 +1,5 @@
 package tn.esprit.foyer.controller;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import tn.esprit.foyer.service.IEtudiantService;
 
 import java.util.List;
 
+
+@Tag(name = "Gestion Etudiant")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/etudiant")
@@ -35,8 +38,9 @@ public class EtudiantRestController {
         etudiantService.removeEtudiant(etudiantId);
     }
 
-    @PutMapping("/modify-etudiant")
-    public Etudiant modifyEtudiant(@RequestBody Etudiant e) {
-        return etudiantService.modifyEtudiant(e);
+    @PutMapping("/modify-etudiant/{etudiant-id}")
+    public Etudiant modifyEtudiant(@PathVariable("etudiant-id") Long etudiantId, @RequestBody Etudiant etudiant) {
+        etudiant.setIdEtudiant(etudiantId); // Set the id from the URL to the request body
+        return etudiantService.modifyEtudiant(etudiant); // Use the service to modify the Etudiant
     }
 }

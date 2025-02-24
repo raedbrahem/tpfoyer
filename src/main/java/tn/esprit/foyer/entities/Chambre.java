@@ -49,6 +49,7 @@ public class Chambre {
 
     @Enumerated(EnumType.STRING)
     private TypeChambre typeC;
+
     @OneToMany
     private List<Reservation> reservations;
 }

@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.foyer.entities.Universite;
 import tn.esprit.foyer.service.IUniversiteService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
+
+@Tag(name = "Gestion Universite")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/universite")
@@ -35,8 +38,10 @@ public class UniversiteRestController {
         universiteService.removeUniversite(universiteId);
     }
 
-    @PutMapping("/modify-universite")
-    public Universite modifyUniversite(@RequestBody Universite u) {
-        return universiteService.modifyUniversite(u);
+    @PutMapping("/modify-universite/{universite-id}")
+    public Universite modifyUniversite(@PathVariable("universite-id") Long universiteId, @RequestBody Universite universite) {
+        universite.setIdUniversite(universiteId); // Set the id from the URL to the request body
+        return universiteService.modifyUniversite(universite); // Use the service to modify the Universite
     }
+
 }

@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.foyer.entities.Foyer;
 import tn.esprit.foyer.service.IFoyerService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
+@Tag(name = "Gestion Foyer")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/foyer")
@@ -35,8 +37,9 @@ public class FoyerRestController {
         foyerService.removeFoyer(foyerId);
     }
 
-    @PutMapping("/modify-foyer")
-    public Foyer modifyFoyer(@RequestBody Foyer f) {
-        return foyerService.modifyFoyer(f);
+    @PutMapping("/modify-foyer/{foyer-id}")
+    public Foyer modifyFoyer(@PathVariable("foyer-id") Long foyerId, @RequestBody Foyer foyer) {
+        foyer.setIdFoyer(foyerId); // Make sure to set the ID from the URL to the request body
+        return foyerService.modifyFoyer(foyer); // Use the service to modify the foyer
     }
 }

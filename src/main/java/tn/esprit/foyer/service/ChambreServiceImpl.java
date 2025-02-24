@@ -2,6 +2,7 @@ package tn.esprit.foyer.service;
 
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.foyer.entities.Chambre;
@@ -10,7 +11,7 @@ import tn.esprit.foyer.repository.ChambreRepository;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ChambreServiceImpl implements IChambreService {
     @Autowired
     ChambreRepository chambreRepository;

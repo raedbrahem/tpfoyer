@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.foyer.entities.Reservation;
 import tn.esprit.foyer.service.IReservationService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
+@Tag(name = "Gestion Foyer")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/reservation")
@@ -35,8 +37,10 @@ public class ReservationRestController {
         reservationService.removeReservation(reservationId);
     }
 
-    @PutMapping("/modify-reservation")
-    public Reservation modifyReservation(@RequestBody Reservation r) {
-        return reservationService.modifyReservation(r);
+    @PutMapping("/modify-reservation/{reservation-id}")
+    public Reservation modifyReservation(@PathVariable("reservation-id") Long reservationId, @RequestBody Reservation reservation) {
+        reservation.setIdReservation(reservationId); // Set the id from the URL to the request body
+        return reservationService.modifyReservation(reservation); // Use the service to modify the Reservation
     }
+
 }

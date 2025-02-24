@@ -1,4 +1,5 @@
 package tn.esprit.foyer.controller;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import tn.esprit.foyer.service.IChambreService;
 
 import java.util.List;
 
+@Tag(name = "Gestion Chambre")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/chambre")
@@ -37,10 +39,10 @@ public class ChambreRestController {
         chambreService.removeChambre(chId);
     }
     // http://localhost:8089/tpfoyer/chambre/modify-chambre
-    @PutMapping("/modify-chambre")
-    public Chambre modifyChambre(@RequestBody Chambre c) {
-        Chambre chambre = chambreService.modifyChambre(c);
-        return chambre;
+    @PutMapping("/modify-chambre/{chambre-id}")
+    public Chambre modifyChambre(@PathVariable("chambre-id") Long chambreId, @RequestBody Chambre chambre) {
+        chambre.setIdChambre(chambreId); // Set the id from the URL to the request body
+        return chambreService.modifyChambre(chambre); // Use the service to modify the Chambre
     }
 
 }
