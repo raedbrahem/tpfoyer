@@ -2,9 +2,16 @@ package tn.esprit.foyer.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import tn.esprit.foyer.entities.Chambre;
+import tn.esprit.foyer.entities.Etudiant;
+import tn.esprit.foyer.entities.Reservation;
 import tn.esprit.foyer.entities.TypeChambre;
+import tn.esprit.foyer.repository.ChambreRepository;
+import tn.esprit.foyer.repository.EtudiantRepository;
+import tn.esprit.foyer.repository.ReservationRepository;
 import tn.esprit.foyer.service.IChambreService;
 
 import java.util.List;
@@ -15,6 +22,12 @@ import java.util.List;
 public class ChambreRestController {
     @Autowired
     IChambreService chambreService;
+    @Autowired
+    ReservationRepository reservationRepository;
+    @Autowired
+    EtudiantRepository etudiantRepository;
+    @Autowired
+    ChambreRepository chambreRepository;
 
 
 
@@ -59,5 +72,38 @@ public class ChambreRestController {
         return List.of(list);
     }
 
+    // http://localhost:8089/tpfoyer/chambre/retrieve-chambreby-etudiant/{cin}
+    @GetMapping("/retrieve-chambreby-etudiant/{cin}")
+    public Chambre getChambreByEtudiant(@PathVariable("cin") long cin) {
+        return chambreService.trouverChselonEt(cin);
+    }
 
+/*
+    @PostMapping("/assignChambreToEtudiant/{cin}")
+    public Chambre assignChambreToEtudiant(@PathVariable Long cin, @RequestBody Chambre chambre) {
+        // Find the student by CIN
+        Etudiant etudiant = etudiantRepository.findByCin(cin);
+
+        if (etudiant == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found");
+        }
+
+        // Save the Chambre first
+        Chambre savedChambre = chambreRepository.save(chambre);
+
+        // Find the reservations for this student
+        List<Reservation> reservations = reservationRepository.findByEtudiants_Cin(cin);
+
+        // Assign the Chambre to each reservation (add to reservations list)
+        for (Reservation reservation : reservations) {
+            // Add the chambre to the reservation's list of reservations in Chambre
+            savedChambre.getReservations().add(reservation);
+            reservation.setChambre(savedChambre);  // Make sure each reservation points to the chambre
+            reservationRepository.save(reservation);
+        }
+
+        // Return the saved Chambre
+        return savedChambre;
+    }
+*/
 }

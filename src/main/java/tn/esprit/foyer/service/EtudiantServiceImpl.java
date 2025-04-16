@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import tn.esprit.foyer.entities.Etudiant;
 import tn.esprit.foyer.repository.EtudiantRepository;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -39,4 +41,11 @@ public class EtudiantServiceImpl implements IEtudiantService {
     public Etudiant modifyEtudiant(Etudiant etudiant) {
         return etudiantRepository.save(etudiant);
     }
+
+    @Override
+    public List<Etudiant> findEtudiantByDateNaissanceAndEcole(String dateNaissance, String ecole) {
+        LocalDate parsedDate = LocalDate.parse(dateNaissance, DateTimeFormatter.ISO_DATE);
+        return etudiantRepository.findByDateNaissanceAndEcole(parsedDate, ecole);
+    }
+
 }

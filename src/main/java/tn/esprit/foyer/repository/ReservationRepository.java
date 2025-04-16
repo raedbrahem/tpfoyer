@@ -18,4 +18,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
     // You can add custom query methods here if needed
     List<Reservation> findAllBy();
+    List<Reservation> findByEtudiants_Cin(Long cin);
 }

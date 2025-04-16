@@ -26,5 +26,4 @@ public interface IProjectService {
     public Project addProjetAndAssignProjetToProjetDetail(Project projet, Long projetDetailId);
     public Project DesaffecterProjetDetailFromProjet(Long projetId);
     public void desaffecterProjetFromEquipe(Long projetId, Long equipeId);
-
 }

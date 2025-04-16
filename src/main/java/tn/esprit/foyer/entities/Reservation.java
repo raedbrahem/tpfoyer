@@ -17,6 +17,14 @@ public class Reservation {
     private Date anneeUniversitaire;
     private boolean estValide;
 
+    public List<Etudiant> getEtudiants() {
+        return etudiants;
+    }
+
+    public void setEtudiants(List<Etudiant> etudiants) {
+        this.etudiants = etudiants;
+    }
+
     @ManyToMany
     private List<Etudiant> etudiants;
 }

@@ -10,4 +10,5 @@ public interface IReservationService {
     Reservation addReservation(Reservation reservation);
     void removeReservation(Long reservationId);
     Reservation modifyReservation(Reservation reservation);
+    public void mettreAJourEtAfficherReservations();
 }

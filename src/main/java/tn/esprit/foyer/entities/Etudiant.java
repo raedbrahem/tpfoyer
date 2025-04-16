@@ -2,6 +2,8 @@ package tn.esprit.foyer.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -16,12 +18,12 @@ public class Etudiant {
     private String prenomEt;
     private Long cin;
     private String ecole;
-    private Date dateNaissance;
+    private LocalDate dateNaissance;
 
     @ManyToMany(mappedBy = "etudiants")
     private List<Reservation> reservations;
 
-    public Etudiant(Long idEtudiant, String nomEt, String prenomEt, Long cin, String ecole, Date dateNaissance, List<Reservation> reservations) {
+    public Etudiant(Long idEtudiant, String nomEt, String prenomEt, Long cin, String ecole, LocalDate  dateNaissance, List<Reservation> reservations) {
         this.idEtudiant = idEtudiant;
         this.nomEt = nomEt;
         this.prenomEt = prenomEt;
@@ -51,7 +53,7 @@ public class Etudiant {
         return ecole;
     }
 
-    public Date getDateNaissance() {
+    public LocalDate getDateNaissance() {
         return dateNaissance;
     }
 
@@ -79,7 +81,7 @@ public class Etudiant {
         this.ecole = ecole;
     }
 
-    public void setDateNaissance(Date dateNaissance) {
+    public void setDateNaissance(LocalDate  dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 

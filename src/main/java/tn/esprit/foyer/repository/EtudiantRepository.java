@@ -7,16 +7,13 @@ import tn.esprit.foyer.entities.Chambre;
 import tn.esprit.foyer.entities.Etudiant;
 import tn.esprit.foyer.entities.TypeChambre;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
 public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
-
-    // No need to code CRUD here. It is already provided by the Spring Data JPA interfaces:
-    // - CrudRepository
-    // - PagingAndSortingRepository
-    // - JpaRepository
-
-    // You can add custom query methods here if needed
     List<Etudiant> findAllBy();
+    Etudiant findByCin(Long cinEtudiant);
+    List<Etudiant> findByDateNaissanceAndEcole(LocalDate dateNaissance, String ecole);
 }
+

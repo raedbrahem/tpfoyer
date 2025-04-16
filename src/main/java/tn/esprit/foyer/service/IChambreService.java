@@ -1,4 +1,5 @@
 package tn.esprit.foyer.service;
+import tn.esprit.foyer.entities.Bloc;
 import tn.esprit.foyer.entities.Chambre;
 import tn.esprit.foyer.entities.TypeChambre;
 import java.util.List;
@@ -11,6 +12,6 @@ public interface IChambreService {
 
     public List<Chambre> findbytypechambre(TypeChambre typeC) ;
 public Chambre findChambreByNumero(Long numeroChambre);
-
+    public Chambre trouverChselonEt(long cin);
 
 }

@@ -40,4 +40,12 @@ public class EtudiantRestController {
     public Etudiant modifyEtudiant(@RequestBody Etudiant e) {
         return etudiantService.modifyEtudiant(e);
     }
+
+    @GetMapping("/find-etudiant-by-dateNaissance-and-ecole/{dateNaissance}/{ecole}")
+    public List<Etudiant> findEtudiantByDateNaissanceAndEcole(
+            @PathVariable("dateNaissance") String dateNaissance,
+            @PathVariable("ecole") String ecole) {
+        return etudiantService.findEtudiantByDateNaissanceAndEcole(dateNaissance, ecole);
+    }
+
 }

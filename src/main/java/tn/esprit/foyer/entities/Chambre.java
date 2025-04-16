@@ -1,5 +1,6 @@
 package tn.esprit.foyer.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
@@ -16,8 +17,12 @@ public class Chambre {
     private Long numeroChambre;
     @Enumerated(EnumType.STRING)
     private TypeChambre typeC;
+    @JsonIgnore
     @OneToMany
     private List<Reservation> reservations;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Bloc bloc;
 
     public Long getIdChambre() {
         return idChambre;
